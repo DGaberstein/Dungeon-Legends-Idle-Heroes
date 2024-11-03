@@ -5,10 +5,22 @@ let levelUpCost = 10;
 let skillActive = false;
 let questActive = false;
 
-// Function to collect gold based on hero's level
+// Function to collect gold with animation
 function collectGold() {
   gold += skillActive ? goldPerSecond * 2 : goldPerSecond;
+  showGoldAnimation();
   updateUI();
+}
+
+// Display floating gold animation
+function showGoldAnimation() {
+  const floatingGold = document.getElementById('floating-gold');
+  floatingGold.classList.add('active');
+  floatingGold.textContent = '+ ' + (skillActive ? goldPerSecond * 2 : goldPerSecond) + ' Gold';
+  
+  setTimeout(() => {
+    floatingGold.classList.remove('active');
+  }, 500); // Reset after animation ends
 }
 
 // Function to level up the hero
@@ -16,8 +28,8 @@ function levelUp() {
   if (gold >= levelUpCost) {
     gold -= levelUpCost;
     heroLevel++;
-    goldPerSecond = Math.floor(heroLevel * 1.5);  // Increase GPS as hero levels up
-    levelUpCost = Math.floor(levelUpCost * 1.5);  // Level up cost increases
+    goldPerSecond = Math.floor(heroLevel * 1.5); // Increase GPS as hero levels up
+    levelUpCost = Math.floor(levelUpCost * 1.5); // Level up cost increases
     updateUI();
   } else {
     alert("Not enough gold!");
@@ -32,7 +44,7 @@ function activateSkill() {
     setTimeout(() => {
       skillActive = false;
       updateUI();
-    }, 10000);  // Skill lasts for 10 seconds
+    }, 10000); // Skill lasts for 10 seconds
   } else {
     alert("Skill already active!");
   }
@@ -46,10 +58,16 @@ function startQuest() {
     
     setTimeout(() => {
       questActive = false;
-      gold += heroLevel * 10;  // Reward scales with hero level
+      gold += heroLevel * 10; // Reward scales with hero level
       document.getElementById("quest-status").textContent = "Quest completed! Collected " + (heroLevel * 10) + " gold!";
+      document.getElementById("quest-status").classList.add("active"); // Trigger animation
+
+      setTimeout(() => {
+        document.getElementById("quest-status").classList.remove("active");
+      }, 300); // Reset animation after completion message
+
       updateUI();
-    }, 20000);  // Quest takes 20 seconds to complete
+    }, 20000); // Quest takes 20 seconds to complete
   } else {
     alert("Quest already in progress!");
   }
@@ -61,10 +79,9 @@ function updateUI() {
   document.getElementById('level').textContent = heroLevel;
   document.getElementById('gps').textContent = skillActive ? goldPerSecond * 2 : goldPerSecond;
   document.getElementById('levelCost').textContent = levelUpCost;
-  document.getElementById('quest-status').style.color = questActive ? '#ffdd57' : '#b3b3cc';
 }
 
 // Automatically collect gold over time
 setInterval(() => {
   collectGold();
-}, 1000);  // Collect gold every second
+}, 1000); // Collect gold every second

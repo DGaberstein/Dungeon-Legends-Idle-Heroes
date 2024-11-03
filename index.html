@@ -18,7 +18,7 @@
     
     <div id="controls">
       <button onclick="levelUp()">Level Up Hero (Cost: <span id="levelCost">10</span> Gold)</button>
-      <button onclick="collectGold()">Collect Gold</button>
+      <button onclick="collectGold()" id="collect-gold-btn">Collect Gold</button>
       <button onclick="activateSkill()">Activate Skill: Gold Boost (10s)</button>
       <button onclick="startQuest()">Start Quest (20s)</button>
     </div>
@@ -26,6 +26,9 @@
     <div id="quest-info">
       <p id="quest-status">No quest active.</p>
     </div>
+    
+    <!-- Floating Gold Animation -->
+    <div id="floating-gold"></div>
   </div>
 
   <script src="script.js"></script>
