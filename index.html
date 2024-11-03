@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dungeon Legends: Idle Heroes</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="game-container">
+    <h1>Dungeon Legends: Idle Heroes</h1>
+    
+    <div id="stats">
+      <p>Gold: <span id="gold">0</span></p>
+      <p>Hero Level: <span id="level">1</span></p>
+      <p>Gold Per Second: <span id="gps">1</span></p>
+    </div>
+    
+    <div id="controls">
+      <button onclick="levelUp()">Level Up Hero (Cost: <span id="levelCost">10</span> Gold)</button>
+      <button onclick="collectGold()">Collect Gold</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
