@@ -14,12 +14,12 @@ body {
     background-color: #333;
     padding: 20px;
     border-radius: 8px;
-    width: 350px;
+    width: 400px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
   }
   
   button {
-    margin: 10px;
+    margin: 5px;
     padding: 10px;
     border: none;
     border-radius: 5px;
@@ -32,44 +32,20 @@ body {
   
   button:hover {
     background-color: #ffaa33;
-    transform: scale(1.05); /* Slightly enlarge on hover */
+    transform: scale(1.05);
   }
   
-  button:active {
-    transform: scale(0.95); /* Slightly shrink on click for feedback */
+  #character-customization, #player-stats, #inventory, #skills, #quests {
+    margin-top: 15px;
   }
   
-  #stats p {
-    font-size: 18px;
-    margin: 8px 0;
+  ul {
+    list-style-type: none;
+    padding: 0;
   }
   
-  #quest-info {
-    margin-top: 20px;
-    font-size: 16px;
+  #quest-status {
+    font-size: 14px;
     color: #b3b3cc;
-    transition: color 0.3s, transform 0.2s;
-  }
-  
-  #quest-status.active {
-    color: #ffdd57; /* Highlight quest completion */
-    transform: scale(1.1); /* Slightly enlarge */
-  }
-  
-  #floating-gold {
-    position: absolute;
-    bottom: 150px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 20px;
-    color: #ffdd57;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.5s ease;
-  }
-  
-  #floating-gold.active {
-    opacity: 1;
-    transform: translate(-50%, -100px); /* Float upward */
   }
   

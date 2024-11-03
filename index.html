@@ -3,32 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dungeon Legends: Idle Heroes</title>
+  <title>Dungeon Legends: RPG Adventure</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div id="game-container">
-    <h1>Dungeon Legends: Idle Heroes</h1>
-    
-    <div id="stats">
+    <h1>Dungeon Legends: RPG Adventure</h1>
+
+    <!-- Character Customization -->
+    <div id="character-customization">
+      <h2>Create Your Character</h2>
+      <label for="name">Name: </label><input type="text" id="name" placeholder="Hero's Name">
+      <label for="class">Class: </label>
+      <select id="class">
+        <option value="warrior">Warrior</option>
+        <option value="mage">Mage</option>
+        <option value="rogue">Rogue</option>
+      </select>
+      <button onclick="createCharacter()">Create Character</button>
+    </div>
+
+    <!-- Player Stats -->
+    <div id="player-stats">
+      <h2>Player Stats</h2>
+      <p>Name: <span id="heroName">N/A</span></p>
+      <p>Class: <span id="heroClass">N/A</span></p>
+      <p>Level: <span id="heroLevel">1</span></p>
+      <p>HP: <span id="heroHP">100</span></p>
+      <p>Attack Power: <span id="attackPower">10</span></p>
       <p>Gold: <span id="gold">0</span></p>
-      <p>Hero Level: <span id="level">1</span></p>
-      <p>Gold Per Second: <span id="gps">1</span></p>
     </div>
-    
-    <div id="controls">
-      <button onclick="levelUp()">Level Up Hero (Cost: <span id="levelCost">10</span> Gold)</button>
-      <button onclick="collectGold()" id="collect-gold-btn">Collect Gold</button>
-      <button onclick="activateSkill()">Activate Skill: Gold Boost (10s)</button>
-      <button onclick="startQuest()">Start Quest (20s)</button>
+
+    <!-- Inventory Management -->
+    <div id="inventory">
+      <h2>Inventory</h2>
+      <button onclick="addItemToInventory('Potion')">Buy Potion (10 Gold)</button>
+      <button onclick="addItemToInventory('Sword')">Buy Sword (50 Gold)</button>
+      <ul id="inventory-list"></ul>
     </div>
-    
-    <div id="quest-info">
-      <p id="quest-status">No quest active.</p>
+
+    <!-- Skill Tree -->
+    <div id="skills">
+      <h2>Skills</h2>
+      <button onclick="learnSkill()">Learn New Skill (Cost: 20 Gold)</button>
+      <ul id="skill-list"></ul>
     </div>
-    
-    <!-- Floating Gold Animation -->
-    <div id="floating-gold"></div>
+
+    <!-- Quests and Exploration -->
+    <div id="quests">
+      <h2>Quests</h2>
+      <button onclick="startQuest()">Embark on a Quest</button>
+      <p id="quest-status">Quest Status: None</p>
+    </div>
   </div>
 
   <script src="script.js"></script>
