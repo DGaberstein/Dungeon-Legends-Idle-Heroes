@@ -2,10 +2,12 @@ let gold = 0;
 let heroLevel = 1;
 let goldPerSecond = 1;
 let levelUpCost = 10;
+let skillActive = false;
+let questActive = false;
 
 // Function to collect gold based on hero's level
 function collectGold() {
-  gold += goldPerSecond;
+  gold += skillActive ? goldPerSecond * 2 : goldPerSecond;
   updateUI();
 }
 
@@ -14,7 +16,7 @@ function levelUp() {
   if (gold >= levelUpCost) {
     gold -= levelUpCost;
     heroLevel++;
-    goldPerSecond = Math.floor(heroLevel * 1.5);  // Increases GPS as hero levels up
+    goldPerSecond = Math.floor(heroLevel * 1.5);  // Increase GPS as hero levels up
     levelUpCost = Math.floor(levelUpCost * 1.5);  // Level up cost increases
     updateUI();
   } else {
@@ -22,12 +24,44 @@ function levelUp() {
   }
 }
 
+// Function to activate a skill for double gold earning for 10 seconds
+function activateSkill() {
+  if (!skillActive) {
+    skillActive = true;
+    updateUI();
+    setTimeout(() => {
+      skillActive = false;
+      updateUI();
+    }, 10000);  // Skill lasts for 10 seconds
+  } else {
+    alert("Skill already active!");
+  }
+}
+
+// Function to start a quest that rewards gold after 20 seconds
+function startQuest() {
+  if (!questActive) {
+    questActive = true;
+    document.getElementById("quest-status").textContent = "Quest in progress...";
+    
+    setTimeout(() => {
+      questActive = false;
+      gold += heroLevel * 10;  // Reward scales with hero level
+      document.getElementById("quest-status").textContent = "Quest completed! Collected " + (heroLevel * 10) + " gold!";
+      updateUI();
+    }, 20000);  // Quest takes 20 seconds to complete
+  } else {
+    alert("Quest already in progress!");
+  }
+}
+
 // Updates the displayed stats
 function updateUI() {
   document.getElementById('gold').textContent = gold;
   document.getElementById('level').textContent = heroLevel;
-  document.getElementById('gps').textContent = goldPerSecond;
+  document.getElementById('gps').textContent = skillActive ? goldPerSecond * 2 : goldPerSecond;
   document.getElementById('levelCost').textContent = levelUpCost;
+  document.getElementById('quest-status').style.color = questActive ? '#ffdd57' : '#b3b3cc';
 }
 
 // Automatically collect gold over time
